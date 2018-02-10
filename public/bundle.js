@@ -38897,16 +38897,12 @@ var Form = function (_React$Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Form.__proto__ || Object.getPrototypeOf(Form)).call.apply(_ref, [this].concat(args))), _this), _this.handleChange = function (event) {
-            _this.props.onChange(event.target.name, event.target.value);
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Form.__proto__ || Object.getPrototypeOf(Form)).call.apply(_ref, [this].concat(args))), _this), _this.handleDateChange = function (date) {
+            _this.props.setNewDate(date);
+        }, _this.handleChange = function (event) {
+            _this.props.formUpdateValue(event.target.name, event.target.value);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
-
-    // handleDataChange = (date) => {
-    //     this.setState({
-    //         startDate: date
-    //     });
-    //     }
 
     _createClass(Form, [{
         key: 'render',
@@ -38965,8 +38961,8 @@ var Form = function (_React$Component) {
                     placeholder: 'Enter email' }),
                 _react2.default.createElement(_reactDatepicker2.default, {
                     placeholderText: 'Choose event date',
-                    selected: this.props.formValues.startDate,
-                    onChange: this.handleDataChange,
+                    selected: this.props.formValues.startDate ? (0, _moment2.default)(this.props.formValues.startDate) : null,
+                    onChange: this.handleDateChange,
                     minDate: (0, _moment2.default)(),
                     dateFormat: 'L',
                     locale: 'pl',
@@ -38989,8 +38985,11 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        onChange: function onChange(name, value) {
+        formUpdateValue: function formUpdateValue(name, value) {
             return dispatch((0, _formActions.formUpdateValue)(name, value));
+        },
+        setNewDate: function setNewDate(date) {
+            return dispatch((0, _formActions.setNewDate)(date));
         }
     };
 };
@@ -47617,6 +47616,14 @@ var formUpdateValue = exports.formUpdateValue = function formUpdateValue(name, v
     };
 };
 
+// SET NEW DATE
+var setNewDate = exports.setNewDate = function setNewDate(date) {
+    return {
+        type: 'SET_NEW_DATE',
+        date: date
+    };
+};
+
 /***/ }),
 /* 356 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -47638,17 +47645,13 @@ var _formReducer = __webpack_require__(358);
 
 var _formReducer2 = _interopRequireDefault(_formReducer);
 
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initialState = {
     firstName: '',
     lastName: '',
     email: '',
-    startData: (0, _moment2.default)().format('DD.MM.YYYY')
+    startDate: ''
 };
 var middleware = (0, _redux.applyMiddleware)(_reduxLogger2.default);
 
@@ -47673,6 +47676,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var reducer = function reducer() {
@@ -47682,6 +47687,11 @@ var reducer = function reducer() {
     switch (action.type) {
         case 'FORM_UPDATE_VALUE':
             state = Object.assign({}, state, _defineProperty({}, action.name, action.value));
+            break;
+        case 'SET_NEW_DATE':
+            state = _extends({}, state, {
+                startDate: action.date
+            });
             break;
     }
     return state;
