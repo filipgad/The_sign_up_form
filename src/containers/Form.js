@@ -43,7 +43,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form method="post" action="/insert">
                 <FormInput 
                     title="First name"
                     type="text" 
@@ -66,6 +66,7 @@ class Form extends React.Component {
                     onChange={this.handleChange} 
                     placeholder="Enter email" />
                 <DatePicker
+                    name="eventDate"
                     placeholderText="Choose event date"
                     selected={this.props.formValues.startDate ? moment(this.props.formValues.startDate) : null}
                     onChange={this.handleDateChange}

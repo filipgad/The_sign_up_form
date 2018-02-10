@@ -1,20 +1,9 @@
 {
-  "name": "Application_form_v2",
-  "version": "1.0.0",
-  "description": "Application_form in react.js",
-  "main": "webpack.config.js",
+  "name": "the-sign-up-form",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/filipgad/Application_form.git"
-  },
-  "keywords": [],
-  "author": "Filip Godziński",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/filipgad/Application_form/issues"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "babel-core": "^6.21.0",
@@ -22,19 +11,28 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
     "express": "^4.16.2",
+    "jade": "~1.11.0",
     "moment": "^2.20.1",
+    "mongodb": "^2.2.33",
+    "mongoose": "^5.0.4",
+    "morgan": "~1.9.0",
     "react": "^15.4.1",
     "react-datepicker": "^1.1.0",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.5",
     "react-router": "^3.0.4",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.7.2",
+    "nodemon": "^1.14.12",
     "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
