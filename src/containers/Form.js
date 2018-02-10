@@ -44,6 +44,7 @@ class Form extends React.Component {
     render() {
         return (
             <form method="post" action="/insert">
+                <h1>SIGN UP FOR THE EVENT</h1>
                 <FormInput 
                     title="First name"
                     type="text" 
@@ -57,7 +58,7 @@ class Form extends React.Component {
                     name="lastName" 
                     value={this.props.formValues.lastName} 
                     onChange={this.handleChange} 
-                    placeholder="Enter lastname" />
+                    placeholder="Enter last name" />
                 <FormInput 
                     title="Email"
                     type="email" 
@@ -65,6 +66,7 @@ class Form extends React.Component {
                     value={this.props.formValues.email} 
                     onChange={this.handleChange} 
                     placeholder="Enter email" />
+                <label>Event date</label>
                 <DatePicker
                     name="eventDate"
                     placeholderText="Choose event date"
@@ -75,7 +77,7 @@ class Form extends React.Component {
                     locale="pl"
                     showDisabledMonthNavigation 
                     required />
-                <FormInput type="submit" value="Submit" />
+                <FormInput type="submit" value="Sign up" />
             </form>
         )
     }
