@@ -39434,6 +39434,11 @@ var Form = function (_React$Component) {
             return _react2.default.createElement(
                 'form',
                 { method: 'post', action: '/insert' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'SIGN UP FOR THE EVENT'
+                ),
                 _react2.default.createElement(_FormInput.FormInput, {
                     title: 'First name',
                     type: 'text',
@@ -39447,7 +39452,7 @@ var Form = function (_React$Component) {
                     name: 'lastName',
                     value: this.props.formValues.lastName,
                     onChange: this.handleChange,
-                    placeholder: 'Enter lastname' }),
+                    placeholder: 'Enter last name' }),
                 _react2.default.createElement(_FormInput.FormInput, {
                     title: 'Email',
                     type: 'email',
@@ -39455,6 +39460,11 @@ var Form = function (_React$Component) {
                     value: this.props.formValues.email,
                     onChange: this.handleChange,
                     placeholder: 'Enter email' }),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Event date'
+                ),
                 _react2.default.createElement(_reactDatepicker2.default, {
                     name: 'eventDate',
                     placeholderText: 'Choose event date',
@@ -39465,7 +39475,7 @@ var Form = function (_React$Component) {
                     locale: 'pl',
                     showDisabledMonthNavigation: true,
                     required: true }),
-                _react2.default.createElement(_FormInput.FormInput, { type: 'submit', value: 'Submit' })
+                _react2.default.createElement(_FormInput.FormInput, { type: 'submit', value: 'Sign up' })
             );
         }
     }]);
