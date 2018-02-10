@@ -4,7 +4,13 @@ const reducer = (state = initialState, action) => {
             state = Object.assign({}, state, {
                 [action.name]: action.value
             });
-        break;
+            break;
+        case 'SET_NEW_DATE':
+            state = {
+                ...state,
+                startDate: action.date
+            };
+            break;
     }
     return state;
 };

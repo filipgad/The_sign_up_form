@@ -3,18 +3,16 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { FormInput } from '../components/FormInput';
-import { formUpdateValue } from '../actions/formActions';
+import { formUpdateValue, setNewDate } from '../actions/formActions';
 
 class Form extends React.Component {
 
-    // handleDataChange = (date) => {
-    //     this.setState({
-    //         startDate: date
-    //     });
-    //     }
+    handleDateChange = (date) => {
+        this.props.setNewDate(date);
+    }
 
     handleChange = (event) => {
-        this.props.onChange(event.target.name, event.target.value);
+        this.props.formUpdateValue(event.target.name, event.target.value);
     }
 
     // handleSubmit = () => {
@@ -69,8 +67,8 @@ class Form extends React.Component {
                     placeholder="Enter email" />
                 <DatePicker
                     placeholderText="Choose event date"
-                    selected={this.props.formValues.startDate}
-                    onChange={this.handleDataChange}
+                    selected={this.props.formValues.startDate ? moment(this.props.formValues.startDate) : null}
+                    onChange={this.handleDateChange}
                     minDate={moment()}
                     dateFormat="L"
                     locale="pl"
@@ -89,7 +87,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChange: (name, value) => dispatch( formUpdateValue(name, value) )
+        formUpdateValue: (name, value) => dispatch( formUpdateValue(name, value) ),
+        setNewDate: (date) => dispatch( setNewDate(date) )
     }
 };
 

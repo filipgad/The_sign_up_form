@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import reducer from "./reducers/formReducer";
-import moment from 'moment';
 
 const initialState = {
     firstName: '',
     lastName: '',
     email: '',
-    startData: moment().format('DD.MM.YYYY')
+    startDate: ''
 };
 const middleware = applyMiddleware(logger);
 

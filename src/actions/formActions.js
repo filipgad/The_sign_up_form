@@ -6,3 +6,11 @@ export const formUpdateValue = (name, value) => {
         value
     };
 };
+
+// SET NEW DATE
+export const setNewDate = (date) => {
+    return {
+        type: 'SET_NEW_DATE',
+        date
+    };
+};
