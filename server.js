@@ -59,7 +59,8 @@ app.post('/insert', function(req, res, next) {
             db.close();
         });
     });
-    res.send('EVENT APPLICATION DATA: ' + JSON.stringify(req.body));
+    res.redirect('/get_events');
+    // res.send('EVENT APPLICATION DATA: ' + JSON.stringify(req.body));
 });
 
 
