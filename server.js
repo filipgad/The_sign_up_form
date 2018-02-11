@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
 
@@ -26,7 +26,7 @@ app.get('*', function(req, res) {
 
 // ====GET====
 
-app.get('/eventApplications', function(req, res, next) {
+app.get('/get_events', function(req, res, next) {
     var applicationsArr = [];
     mongo.connect(url, function(err, db) {
         assert.equal(null, err);
@@ -35,6 +35,7 @@ app.get('/eventApplications', function(req, res, next) {
             assert.equal(null, err);
             applicationsArr.push(doc);
         }, function() {
+            res.json(applicationsArr);
             db.close();
         });
     });
@@ -58,7 +59,7 @@ app.post('/insert', function(req, res, next) {
             db.close();
         });
     });
-    res.redirect('/');
+    res.send('EVENT APPLICATION DATA: ' + JSON.stringify(req.body));
 });
 
 
